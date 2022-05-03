@@ -9,8 +9,11 @@ export function createGetter(path) {
   return (obj) => {
     let newObj = obj;
     for (const field of fields) {
+      if (!newObj) {
+        return;
+      }
       if (typeof newObj[field] === "object") {
-        newObj = newObj[field];
+        newObj = newObj?.[field];
       } else {
         return newObj[field];
       }
