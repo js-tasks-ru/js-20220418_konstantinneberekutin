@@ -31,11 +31,6 @@
         link: '#'
       });
 
-      loadOrders.addEventListener('click', () => {
-        // const start = start.value;
-        ordersChart.update(new Date(start.value), new Date(end.value))
-      });
-
       const salesChart = new ColumnChart({
         url: 'api/dashboard/sales',
         range: {
@@ -58,6 +53,12 @@
       orders.append(ordersChart.element);
       sales.append(salesChart.element);
       customers.append(customersChart.element);
+
+      loadOrders.addEventListener('click', () => {
+        ordersChart.update(new Date(start.value), new Date(end.value))
+        salesChart.update(new Date(start.value), new Date(end.value))
+        customersChart.update(new Date(start.value), new Date(end.value))
+      });
     </script>
   </body>
 </html>
